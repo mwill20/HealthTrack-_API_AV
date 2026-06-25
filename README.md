@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/logo.png" alt="HealthTrack API logo" width="220">
+</p>
+
 # HealthTrack API — Teaching Project
 
 **Claude Code Mastery · Week 5 · Sessions 9 & 10**
@@ -133,3 +137,16 @@ python scripts/validate_ci.py        # all checks must pass
 
 A separate workflow, `.github/workflows/ai-skill-review.yml`, runs the AI
 PR-review / security-audit / coverage Skills on pull requests.
+
+---
+
+## License
+
+Licensed under the [MIT License](LICENSE).
+
+## Project Documentation
+
+- [CHECKLIST.md](CHECKLIST.md) — deliverable status
+- [docs/TRADEOFFS.md](docs/TRADEOFFS.md) — design decisions and their costs
+- [SECURITY.md](SECURITY.md) + [threat model](docs/threat-models/THREAT_MODEL_week6_cicd_docker.md)
+- [REPO_AUDIT.md](REPO_AUDIT.md) — repository-standards audit

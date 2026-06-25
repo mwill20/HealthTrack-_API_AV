@@ -19,7 +19,7 @@
 | Deployment documentation | PARTIAL | Medium | Compose usage in README; no `docs/DEPLOYMENT.md` |
 | Monitoring and maintenance | PARTIAL | Medium | `/health` exists; no `docs/MONITORING.md` |
 | Limitations and trade-offs | PARTIAL | High | Intentional-issues table exists; no `docs/LIMITATIONS.md` |
-| License and usage rights | FAIL | High | No `LICENSE` file — usage rights unclear |
+| License and usage rights | PASS | High | `LICENSE` (MIT) added |
 | Support and contact | PARTIAL | Medium | SECURITY.md has a `TODO:` contact |
 | Visual demo and assets | PARTIAL | Medium | Text data-flow in threat model; no diagram image |
 
@@ -29,18 +29,18 @@
 - Strong test coverage (98%) with explicit should-fail cases.
 - `scripts/validate_ci.py` passes all checks.
 
-## Missing Files (flagged, not created this pass)
-- `LICENSE` — **do not choose one without owner approval** (per CLAUDE.md). Highest-priority gap.
+## Missing Files (flagged)
+- ~~`LICENSE`~~ — **added (MIT)**.
 - `docs/ARCHITECTURE.md`, `docs/LIMITATIONS.md`, `docs/EVALUATION.md` — standard docs suite.
 - `AGENTS.md` — AI-agent behavior instructions.
-- `assets/` diagram image (optional; text diagram exists in the threat model).
+- `assets/` architecture **diagram** image (logo added; text data-flow diagram exists in the threat model).
 
 ## Files Created/Modified This Pass
 - **Created:** `SECURITY.md`, `docs/threat-models/THREAT_MODEL_week6_cicd_docker.md`, `docs/WEEK6_BRIEF.md`, this `REPO_AUDIT.md`.
 - **Modified:** `README.md` (Week 6 section), `CLAUDE.md` (Docker now in scope).
 
 ## Priority Fix Order
-1. Add a `LICENSE` (needs owner decision).
+1. ~~Add a `LICENSE`~~ — done (MIT).
 2. Add `docs/ARCHITECTURE.md` + `docs/LIMITATIONS.md`.
 3. Fill the `TODO:` security contact in `SECURITY.md`.
 4. Add `AGENTS.md` and an architecture diagram image.
