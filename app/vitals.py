@@ -27,6 +27,7 @@ VALID_VITAL_TYPES = ["heart_rate", "blood_pressure_sys", "blood_pressure_dia",
                      "temperature", "spo2", "respiratory_rate"]
 
 
+# NOTE (Week 6): small change to exercise the CI pipeline end-to-end via a PR.
 def record_vitals(patient_id: str, vital_type: str, value: float,
                   recorded_by: str, unit: str = "auto") -> dict:
     """
