@@ -51,7 +51,8 @@ Legend: ✅ done & verified · 🟡 needs a manual/owner action · ⬜ not start
 - ✅ Lesson — [Lessons/Lesson01_CICD_Docker_Pipeline.md](Lessons/Lesson01_CICD_Docker_Pipeline.md)
 - ✅ Repo audit — [REPO_AUDIT.md](REPO_AUDIT.md)
 - ✅ README updated with Docker/CI usage + logo
-- ⬜ `docs/ARCHITECTURE.md`, `docs/LIMITATIONS.md` (flagged in audit; optional next)
+- ✅ `docs/ARCHITECTURE.md`, `docs/LIMITATIONS.md`
+- ⬜ `docs/EVALUATION.md`, `AGENTS.md`, architecture diagram image (optional next)
 - 🟡 Fill the `TODO:` security contact in `SECURITY.md`
 
 ## Owner actions still open

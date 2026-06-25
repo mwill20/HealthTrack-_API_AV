@@ -147,6 +147,8 @@ Licensed under the [MIT License](LICENSE).
 ## Project Documentation
 
 - [CHECKLIST.md](CHECKLIST.md) — deliverable status
+- [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) — components, request lifecycle, design decisions
+- [docs/LIMITATIONS.md](docs/LIMITATIONS.md) — what this project is not, and known failure modes
 - [docs/TRADEOFFS.md](docs/TRADEOFFS.md) — design decisions and their costs
 - [SECURITY.md](SECURITY.md) + [threat model](docs/threat-models/THREAT_MODEL_week6_cicd_docker.md)
 - [REPO_AUDIT.md](REPO_AUDIT.md) — repository-standards audit
