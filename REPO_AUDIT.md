@@ -12,7 +12,7 @@
 | Usage examples | PASS | High | Week 6 section adds runnable commands |
 | Architecture documentation | PASS | High | `docs/ARCHITECTURE.md` added (overview, diagrams, decisions) |
 | Dependencies and environment | PASS | High | Pinned `requirements.txt` / `requirements-dev.txt`; `.env.example` present |
-| Evaluation and results | PARTIAL | High | Coverage measured (98%); no `docs/EVALUATION.md` |
+| Evaluation and results | PASS | High | `docs/EVALUATION.md` added with measured results |
 | Dataset documentation | N/A | Medium | No dataset used |
 | Model documentation | N/A | Medium | No ML model in this project |
 | Security documentation | PASS | High | `SECURITY.md` + threat model created |
@@ -32,9 +32,9 @@
 ## Missing Files (flagged)
 - ~~`LICENSE`~~ — **added (MIT)**.
 - ~~`docs/ARCHITECTURE.md`, `docs/LIMITATIONS.md`~~ — **added**.
-- `docs/EVALUATION.md` — evaluation/metrics doc (coverage measured; not yet written up).
-- `AGENTS.md` — AI-agent behavior instructions.
-- `assets/` architecture **diagram** image (logo added; text data-flow diagram exists in ARCHITECTURE.md + threat model).
+- ~~`docs/EVALUATION.md`~~ — **added** (measured results).
+- ~~`AGENTS.md`~~ — **added**.
+- `assets/` architecture **diagram** image (logo added; text data-flow diagram exists in ARCHITECTURE.md + threat model). Remaining optional gap.
 
 ## Files Created/Modified This Pass
 - **Created:** `SECURITY.md`, `docs/threat-models/THREAT_MODEL_week6_cicd_docker.md`, `docs/WEEK6_BRIEF.md`, this `REPO_AUDIT.md`.
@@ -43,5 +43,5 @@
 ## Priority Fix Order
 1. ~~Add a `LICENSE`~~ — done (MIT).
 2. ~~Add `docs/ARCHITECTURE.md` + `docs/LIMITATIONS.md`~~ — done.
-3. Fill the `TODO:` security contact in `SECURITY.md`.
-4. Add `AGENTS.md`, `docs/EVALUATION.md`, and an architecture diagram image.
+3. ~~Add `AGENTS.md` + `docs/EVALUATION.md`~~ — done.
+4. Fill the `TODO:` security contact in `SECURITY.md`; add an architecture diagram image (optional).

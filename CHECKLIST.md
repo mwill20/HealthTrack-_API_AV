@@ -52,7 +52,8 @@ Legend: ✅ done & verified · 🟡 needs a manual/owner action · ⬜ not start
 - ✅ Repo audit — [REPO_AUDIT.md](REPO_AUDIT.md)
 - ✅ README updated with Docker/CI usage + logo
 - ✅ `docs/ARCHITECTURE.md`, `docs/LIMITATIONS.md`
-- ⬜ `docs/EVALUATION.md`, `AGENTS.md`, architecture diagram image (optional next)
+- ✅ `docs/EVALUATION.md`, `AGENTS.md`
+- ⬜ Architecture diagram image (optional; text diagram exists)
 - 🟡 Fill the `TODO:` security contact in `SECURITY.md`
 
 ## Owner actions still open

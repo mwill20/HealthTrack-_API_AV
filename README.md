@@ -149,6 +149,8 @@ Licensed under the [MIT License](LICENSE).
 - [CHECKLIST.md](CHECKLIST.md) — deliverable status
 - [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) — components, request lifecycle, design decisions
 - [docs/LIMITATIONS.md](docs/LIMITATIONS.md) — what this project is not, and known failure modes
+- [docs/EVALUATION.md](docs/EVALUATION.md) — measured validation results
 - [docs/TRADEOFFS.md](docs/TRADEOFFS.md) — design decisions and their costs
+- [AGENTS.md](AGENTS.md) — instructions for AI coding assistants
 - [SECURITY.md](SECURITY.md) + [threat model](docs/threat-models/THREAT_MODEL_week6_cicd_docker.md)
 - [REPO_AUDIT.md](REPO_AUDIT.md) — repository-standards audit
