@@ -77,7 +77,7 @@ flowchart LR
 ```mermaid
 flowchart LR
     trig["push to main<br/>/ pull_request"] --> lint["lint<br/>ruff"]
-    lint --> test["test<br/>pytest, cov &ge; 90%"]
+    lint --> test["test<br/>pytest, cov >= 90%"]
     lint --> sec["security<br/>bandit + pip-audit<br/>(advisory)"]
 ```
 
