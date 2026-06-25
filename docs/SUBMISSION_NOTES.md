@@ -1,7 +1,8 @@
-# Week 6 — Submission Notes (DRAFT — review & edit before submitting)
+# Week 6 — Submission Notes
 
-> Grounded in what actually happened during this build. Edit to your own voice
-> and fill the screenshot placeholders. The brief asks for 3–5 sentences.
+> Grounded in what actually happened during this build. These are fact-checked
+> against the repo — personalise the wording to your own voice before submitting.
+> The brief asks for 3–5 sentences. Evidence (screenshots + logs): [evidence/](evidence/).
 
 ## What was the hardest part of setting up the CI pipeline?
 
@@ -41,9 +42,9 @@ be used to exhaust the DB connection pool. I'd also remove `ANTHROPIC_API_KEY` f
 
 ---
 
-## Evidence checklist (attach for submission)
-- [ ] Screenshot: first passing CI run in the Actions tab (Part 1)
-- [ ] Screenshot: `/health` returning 200 / healthy stack (bonus +5)
-- [ ] `docker images healthtrack:local` output (image size, Part 2)
-- [ ] `python scripts/validate_ci.py` → all checks passed (Part 4)
-- [ ] PR showing the CI pipeline triggered on the `app/vitals.py` change (Part 4)
+## Evidence captured (see [evidence/](evidence/))
+- [x] Passing CI run, all jobs green — [evidence/ci-run.png](evidence/ci-run.png) (Part 1)
+- [x] `/health` healthy — [evidence/health-ok.png](evidence/health-ok.png) (bonus +5)
+- [x] Image size, `/health`, `validate_ci`, coverage — [evidence/EVIDENCE.md](evidence/EVIDENCE.md)
+- [x] PR triggering CI on the `app/vitals.py` change — [PR #1](https://github.com/mwill20/HealthTrack-_API_AV/pull/1)
+- [ ] (Optional) re-capture the PR all-green after adding the `ANTHROPIC_API_KEY` repo secret
