@@ -48,7 +48,20 @@ $ curl -s -w " [HTTP %{http_code}]" http://localhost:5000/health
 ```
 Screenshot: `health-ok.png`
 
-## 4. Deliverable validation (Part 4)
+## 4. Pull request — all checks green (Part 4)
+
+PR [#1](https://github.com/mwill20/HealthTrack-_API_AV/pull/1) after adding the
+`ANTHROPIC_API_KEY` repo Actions secret:
+
+```
+AI Skill Review                    — pass
+Lint (ruff)                        — pass
+Security scan (bandit + pip-audit) — pass
+Test (pytest + coverage)           — pass
+```
+Every workflow triggered by the PR passes.
+
+## 5. Deliverable validation (Part 4)
 
 ```
 $ python scripts/validate_ci.py
@@ -56,7 +69,7 @@ $ python scripts/validate_ci.py
 ✓ All checks passed! Week 6 mini project complete.
 ```
 
-## 5. Tests / coverage
+## 6. Tests / coverage
 
 ```
 $ pytest --cov=app --cov-fail-under=90
@@ -64,5 +77,5 @@ $ pytest --cov=app --cov-fail-under=90
 Required test coverage of 90% reached. Total coverage: 98.14%
 ```
 
-> Note: the separate `ai-skill-review.yml` workflow requires an `ANTHROPIC_API_KEY`
-> **repo Actions secret** (not `.env`); it fails until that secret is added.
+> Note: the separate `ai-skill-review.yml` workflow reads the `ANTHROPIC_API_KEY`
+> **repo Actions secret** (not `.env`). With that secret set, it passes (see §4).

@@ -33,7 +33,7 @@ Legend: ✅ done & verified · 🟡 needs a manual/owner action · ⬜ not start
 - ✅ PR opened ([#1](https://github.com/mwill20/HealthTrack-_API_AV/pull/1)); CI triggered automatically
 - ✅ Graded `ci.yml` jobs **pass** on the PR (lint/test/security all ✅)
 - ✅ `python scripts/validate_ci.py` locally — **all checks pass**
-- 🟡 Re-run `ai-skill-review` after adding the secret (see below)
+- ✅ `ai-skill-review` passes on the PR (secret added) — **all 4 PR checks green**
 - 🟡 Document one thing that went wrong + how Claude helped (drafted in submission notes)
 
 ## Bonuses
@@ -57,7 +57,8 @@ Legend: ✅ done & verified · 🟡 needs a manual/owner action · ⬜ not start
 - 🟡 Fill the `TODO:` security contact in `SECURITY.md`
 
 ## Owner actions still open
-1. 🟡 Add `ANTHROPIC_API_KEY` repo secret → re-run `ai-skill-review` (`gh run rerun 28146642182`)
-2. 🟡 Capture the three submission screenshots
-3. 🟡 Edit submission notes; optionally merge PR #1
-4. ⬜ (Optional) SHA-pin actions, hash-pin deps, add image CVE scan (threat-model TODOs)
+1. ✅ Add `ANTHROPIC_API_KEY` repo secret → `ai-skill-review` re-run **green**
+2. ✅ Submission screenshots captured — [docs/evidence/](docs/evidence/)
+3. 🟡 Edit submission notes to your voice; optionally merge PR #1 (`gh pr merge 1 --squash --delete-branch`)
+4. 🟡 Rotate the API key (pasted in plaintext earlier)
+5. ⬜ (Optional) SHA-pin actions, hash-pin deps, add image CVE scan (threat-model TODOs)
