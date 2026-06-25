@@ -81,3 +81,55 @@ All issues are deliberate. Do not fix them before the session.
 | `app/vitals.py` | SQL injection via f-strings, hardcoded `DB_PASSWORD`, no input validation, PII over-exposure |
 | `app/auth.py` | MD5 password hashing, no token expiry, logs plaintext password on failed login |
 | `app/alerts.py` | No ward-boundary authorisation, PII in SMS escalation body, no pagination |
+
+---
+
+## Week 6 — CI/CD Pipeline & Docker
+
+Week 6 adds a CI/CD pipeline and containerisation. See
+[`docs/WEEK6_BRIEF.md`](docs/WEEK6_BRIEF.md) for the assignment and
+[`SECURITY.md`](SECURITY.md) + [`docs/threat-models/THREAT_MODEL_week6_cicd_docker.md`](docs/threat-models/THREAT_MODEL_week6_cicd_docker.md)
+for the security posture of these additions.
+
+### Run the full stack (api + postgres + redis)
+
+```bash
+cp .env.example .env        # then edit .env with local values
+docker compose up -d        # build + start all three services
+curl http://localhost:5000/health
+# -> {"status":"ok","database":"ok","cache":"ok"}
+```
+
+### Build and run just the image
+
+```bash
+docker build -t healthtrack:local .
+docker run -p 5000:5000 healthtrack:local
+curl http://localhost:5000/health   # 200 (status "degraded" without db/redis)
+```
+
+### Run tests with the coverage gate
+
+```bash
+pip install -r requirements-dev.txt
+pytest --cov=app --cov-fail-under=90
+```
+
+### Validate all Week 6 deliverables
+
+```bash
+python scripts/validate_ci.py        # all checks must pass
+# On Windows, force UTF-8 so the ✓ marks render:
+#   set PYTHONUTF8=1 && python scripts/validate_ci.py
+```
+
+### CI pipeline (`.github/workflows/ci.yml`)
+
+| Job | Does | Blocking? |
+|-----|------|-----------|
+| `lint` | `ruff` correctness checks | Yes |
+| `test` | `pytest` + ≥90% coverage gate (runs after `lint`) | Yes |
+| `security` | `bandit` + `pip-audit` (runs after `lint`) | **Advisory** — app ships intentional teaching vulns |
+
+A separate workflow, `.github/workflows/ai-skill-review.yml`, runs the AI
+PR-review / security-audit / coverage Skills on pull requests.

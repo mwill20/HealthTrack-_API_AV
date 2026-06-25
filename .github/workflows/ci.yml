@@ -1,0 +1,105 @@
+name: CI
+
+# Continuous-integration pipeline for HealthTrack API.
+#
+# Job graph (enforced with `needs:` so a failing gate stops the rest):
+#   lint ──▶ test       (don't waste minutes testing code that won't lint)
+#        └─▶ security    (advisory; see note on the job)
+#
+# This complements .github/workflows/ai-skill-review.yml, which runs the
+# AI PR-review / security-audit / coverage Skills on pull requests.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# Cancel an in-flight run for a ref when a newer commit is pushed.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+# Least privilege: this pipeline only needs to read the repository.
+permissions:
+  contents: read
+
+jobs:
+  # ── Lint ──────────────────────────────────────────────────────────────────
+  lint:
+    name: Lint (ruff)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install ruff
+        run: pip install ruff==0.8.4
+
+      - name: Run ruff
+        run: ruff check app tests wsgi.py
+
+  # ── Test ──────────────────────────────────────────────────────────────────
+  test:
+    name: Test (pytest + coverage)
+    needs: [lint]
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      # Referenced via GitHub secrets, never hardcoded. Empty when the secret
+      # is unset; tests mock external services so they do not depend on it.
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements-dev.txt
+
+      - name: Run tests with coverage gate
+        # Build fails if line coverage drops below 90%.
+        run: pytest --cov=app --cov-report=term-missing --cov-fail-under=90
+
+  # ── Security scan (advisory) ────────────────────────────────────────────────
+  # HealthTrack ships INTENTIONAL teaching vulnerabilities (SQL injection,
+  # hardcoded creds, MD5). bandit/pip-audit will flag them by design, so this
+  # job is advisory (continue-on-error) — it surfaces findings in the run
+  # without blocking merges. Flip continue-on-error to false once the app is
+  # hardened for real.
+  security:
+    name: Security scan (bandit + pip-audit)
+    needs: [lint]
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    continue-on-error: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install scanners
+        run: pip install bandit==1.8.0 pip-audit==2.7.3
+
+      - name: Static security scan (bandit)
+        run: bandit -r app -ll
+
+      - name: Dependency vulnerability scan (pip-audit)
+        run: pip-audit -r requirements.txt

@@ -1,0 +1,6 @@
+# Development + CI dependencies. Install with: pip install -r requirements-dev.txt
+# Inherits the runtime deps so tests import the same versions the image ships.
+-r requirements.txt
+pytest==8.3.4
+pytest-mock==3.14.0
+pytest-cov==6.0.0

@@ -1,0 +1,33 @@
+# Keep the build context small and secret-free. Anything matched here is never
+# sent to the Docker daemon, so it cannot be COPYed into the image by accident.
+
+# Local secrets — never ship these into an image
+.env
+*.env
+!.env.example
+
+# Version control & CI
+.git
+.github
+.gitignore
+
+# Python caches & local virtualenv
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Dev-only deps and tooling (image installs requirements.txt only)
+requirements-dev.txt
+ruff.toml
+
+# Tests, docs, and teaching material not needed at runtime
+tests/
+docs/
+skills/
+plugins/
+Lessons/
+*.md

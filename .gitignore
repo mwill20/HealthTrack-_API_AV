@@ -6,3 +6,11 @@ __pycache__/
 dist/
 build/
 .DS_Store
+
+# Local virtualenv and test/coverage caches
+.venv/
+venv/
+.pytest_cache/
+.coverage
+htmlcov/
+coverage.xml

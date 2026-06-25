@@ -1,0 +1,12 @@
+# Ruff lint config — shared by local runs and the CI `lint` job so results match.
+# Default rule set is pyflakes (F) + pycodestyle errors (E); both catch the
+# real defects (unused imports, undefined names) without flagging the
+# intentional teaching vulnerabilities, which are surfaced by bandit instead.
+target-version = "py311"
+line-length = 100
+
+[lint]
+# Correctness rules only (pycodestyle errors + pyflakes). Import-ordering (I)
+# and stylistic rules are intentionally excluded so lint does not churn the
+# frozen teaching modules over non-defects.
+select = ["E", "F"]

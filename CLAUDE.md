@@ -61,7 +61,12 @@ Always pass this CLAUDE.md as context to every agent session.
 
 ## Out of Scope for Lab
 
+> **Week 6 update:** Docker configuration and a CI/CD pipeline are now **in scope** —
+> they are the Week 6 mini-project deliverables (see `docs/WEEK6_BRIEF.md`). The
+> intentional vulnerabilities in `vitals.py`/`auth.py`/`alerts.py` remain out of scope
+> (do not fix them); the Week 6 security-scan job runs in advisory mode for that reason.
+
 - Database migrations or real DB setup
-- Flask app deployment or Docker configuration
+- ~~Flask app deployment or Docker configuration~~ → **in scope as of Week 6**
 - Frontend or admin UI
 - Celery tasks or async workers

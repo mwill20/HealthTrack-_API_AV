@@ -1,0 +1,71 @@
+# Full local service stack for HealthTrack API: api + postgres + redis.
+# Bring up with:  docker compose up -d
+# Values come from .env (gitignored). Copy .env.example -> .env first.
+
+services:
+  # ── Application ───────────────────────────────────────────────────────────
+  api:
+    build: .
+    image: healthtrack:local
+    ports:
+      - "5000:5000"
+    # env_file injects every key from .env into the container; the explicit
+    # environment block below pins the service-discovery values (the db/redis
+    # hostnames are the compose service names, not localhost).
+    env_file:
+      - .env
+    environment:
+      DB_HOST: db
+      DB_PORT: "5432"
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      REDIS_URL: redis://redis:6379/0
+    # Don't start the api until its dependencies report healthy — this is what
+    # makes /health show database: ok / cache: ok instead of racing startup.
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://localhost:5000/health', timeout=3).status == 200 else 1)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped
+
+  # ── PostgreSQL ──────────────────────────────────────────────────────────────
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      # pg_isready returns 0 only once Postgres is accepting connections.
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  # ── Redis ─────────────────────────────────────────────────────────────────
+  redis:
+    image: redis:7-alpine
+    volumes:
+      - redisdata:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+# Named volumes persist data across `docker compose down`/`up` cycles.
+volumes:
+  pgdata:
+  redisdata:
